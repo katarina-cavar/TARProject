@@ -9,3 +9,15 @@ Automatically detecting emotions from text is a very difficult problem. The main
 
 **Entry points:**
 - [Kashfia SailunazEmail authorManmeet DhaliwalJon RokneReda Alhajj. Emotion detection from text and speech: a survey](https://link.springer.com/article/10.1007/s13278-018-0505-2)
+
+
+## Paper: [Kashfia SailunazEmail authorManmeet DhaliwalJon RokneReda Alhajj. Emotion detection from text and speech: a survey](https://link.springer.com/article/10.1007/s13278-018-0505-2)
+
+- different sources to analyze emotions
+- extracting emotions - immense and complicated task
+- to achieve better accuracy: 
+  - word-based techniques
+  - sentence-based techniques
+  - ML
+  - NLP
+- this article has to be bought!! :O 
