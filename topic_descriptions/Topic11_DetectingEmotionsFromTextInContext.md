@@ -20,4 +20,5 @@ Automatically detecting emotions from text is a very difficult problem. The main
   - sentence-based techniques
   - ML
   - NLP
-- this article has to be bought!! :O 
+- this article has to be bought!! :O [link](https://sci-hub.tw/10.1007/s13278-018-0505-2)
+
