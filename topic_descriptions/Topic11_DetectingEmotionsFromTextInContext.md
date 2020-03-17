@@ -6,6 +6,7 @@ Automatically detecting emotions from text is a very difficult problem. The main
 
 **Dataset:**
 - [https://www.humanizing-ai.com/emocontext.html](https://www.humanizing-ai.com/emocontext.html)
+	- happy, sad, angry, other
 
 **Entry points:**
 - [Kashfia SailunazEmail authorManmeet DhaliwalJon RokneReda Alhajj. Emotion detection from text and speech: a survey](https://link.springer.com/article/10.1007/s13278-018-0505-2)
