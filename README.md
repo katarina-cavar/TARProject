@@ -7,6 +7,7 @@ Bots that pose as humans on social media can have considerable influence on user
 
 **Dataset:**
 - [https://pan.webis.de/clef19/pan19-web/author-profiling.html](https://pan.webis.de/clef19/pan19-web/author-profiling.html)
+	- https://zenodo.org/record/3692340#.XnKR0HVKhuS
 
 **Entry points:**
 - [Andre Guess, Jonathan Nagler, and Joshua Tucker. Less than you think: Prevalence
