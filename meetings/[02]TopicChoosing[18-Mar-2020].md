@@ -26,4 +26,9 @@ Dora
 - može sve (sanja je isto za sve) 
 
 Kata
-- 
+- blabla 
+
+Finalni dogovor: 
+- Bots
+- Offens
+- Emotions
