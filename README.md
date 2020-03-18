@@ -16,6 +16,14 @@ and predictors of fake news dissemination on Facebook](https://advances.sciencem
 striking opposition in online social systems](https://arxiv.org/abs/1802.07292)
 
 
+## Points of interest
+
+- bot vs human
+- male vs female vs bot
+- extracting keywords or sentence syntax which most corresponds to each one? 
+- next step: choose 2-3 singers, upload their lyrics and do the same? 
+	- would it detect catch-phrases of some singers? 
+
 --- 
 
 
@@ -44,6 +52,11 @@ Automatically detecting emotions from text is a very difficult problem. The main
   - NLP
 - this article has to be bought!! :O [link](https://sci-hub.tw/10.1007/s13278-018-0505-2)
 
+
+## Points of interest
+
+- ... 
+
 --- 
 
 # Topic 18 | OffensEval 2020
@@ -58,6 +71,11 @@ Offensive language is pervasive in social media. Individuals frequently take adv
 **Entry points:**
 - [Zampieri, M., Malmasi, S., Nakov, P., Rosenthal, S., Farra, N. and Kumar, R. (2019) SemEval-2019 Task 6: Identifying and Categorizing Offensive Language in Social Media (OffensEval). In Proceedings of the 13th International Workshop on Semantic Evaluation. pp. 75-86](https://arxiv.org/pdf/1903.08983.pdf)
 - [Zampieri, M., Malmasi, S., Nakov, P., Rosenthal, S., Farra, N. and Kumar, R. (2019) Predicting the Type and Target of Offensive Posts in Social Media. In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers). pp. 1415-1420](https://arxiv.org/pdf/1902.09666.pdf)
+
+
+## Points of interest
+
+- ... 
 
 --- 
 
