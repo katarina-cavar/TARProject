@@ -13,3 +13,14 @@ and predictors of fake news dissemination on Facebook](https://advances.sciencem
 - [Kai Shu, Suhang Wang, and Huan Liu. Understanding user profiles on social media for fake news detection](http://www.public.asu.edu/~skai2/papers/fake_news_user.pdf)
 - [Massimo Stella, Emilio Ferrara, and Manlio De Domenico. Bots sustain and inflate
 striking opposition in online social systems](https://arxiv.org/abs/1802.07292)
+
+
+## Points of interest
+
+- bot vs human
+- male vs female vs bot
+- extracting keywords or sentence syntax which most corresponds to each one? 
+- next step: choose 2-3 singers, upload their lyrics and do the same? 
+	- would it detect catch-phrases of some singers? 
+
+--- 
