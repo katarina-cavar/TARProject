@@ -1,3 +1,7 @@
+# Get Started
+
+- when you read a paper, put notes inside `Papers` folder and write inside `Papers/README.md` under your name which paper you're reading and the link to the paper :) <3 
+
 # Paper reading
 
 ## Entry points
