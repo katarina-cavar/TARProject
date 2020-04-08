@@ -31,7 +31,7 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 
 ### Katarina
 
-Paperi nevezani za ovaj predmet
+Paperi opcenito za NLP, ne usko vezani za OffensEval
 - [Transformers: Attention is All You Need](https://arxiv.org/abs/1706.03762)
 - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
 - [Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)
