@@ -26,7 +26,8 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 ---
 
 ### Dorotea
-
+- [Offensive Language Detection with Neural Networks
+for Germeval Task 2018](https://epub.oeaw.ac.at/0xc1aa5576_0x003a10e4.pdf)
 ---
 
 ### Katarina
