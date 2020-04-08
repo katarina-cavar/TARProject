@@ -14,7 +14,7 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 	- Zampieri, M., Malmasi, S., Nakov, P., Rosenthal, S., Farra, N. and Kumar, R. (2019)
 	-  In Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume 1 (Long and Short Papers). pp. 1415-1420
 
-
+---
 
 ## Further research 
 
@@ -22,6 +22,19 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 
 - [Abusive Language Detection in Online User Content](https://dl.acm.org/doi/pdf/10.1145/2872427.2883062)
 
+
+---
+
 ### Dorotea
 
+---
+
 ### Katarina
+
+Paperi nevezani za ovaj predmet
+- [Transformers: Attention is All You Need](https://arxiv.org/abs/1706.03762)
+- [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+- [Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks](https://arxiv.org/abs/1908.10084)
+
+
+---
