@@ -31,6 +31,9 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 
 ### Katarina
 
+OffensEval paperi: 
+- [Automated Hate Speech Detection and the Problem of Offensive Language∗](https://arxiv.org/pdf/1703.04009.pdf)
+
 Paperi opcenito za NLP, ne usko vezani za OffensEval
 - [Transformers: Attention is All You Need](https://arxiv.org/abs/1706.03762)
 - [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
