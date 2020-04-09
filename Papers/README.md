@@ -1,6 +1,6 @@
 # Get Started
 
-- when you read a paper, put notes inside `Papers` folder and write inside `Papers/README.md` under your name which paper you're reading and the link to the paper :) <3 
+- when you read a paper, put notes inside `Papers` folder and write inside `Papers/README.md` under your name which paper you're reading and the link to the paper :) <3
 
 # Paper reading
 
@@ -16,11 +16,12 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 
 ---
 
-## Further research 
+## Further research
 
 ### Sanja
 
 - [Abusive Language Detection in Online User Content](https://dl.acm.org/doi/pdf/10.1145/2872427.2883062)
+- [Understanding Abuse: A Typology of Abusive Language Detection Subtasks](https://www.aclweb.org/anthology/W17-3012/)
 
 
 ---
@@ -28,11 +29,12 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 ### Dorotea
 - [Offensive Language Detection with Neural Networks
 for Germeval Task 2018](https://epub.oeaw.ac.at/0xc1aa5576_0x003a10e4.pdf)
+- [Combining Shallow and Deep Learning  for Aggressive Text Detection](https://www.aclweb.org/anthology/W18-44.pdf) - TRAC 2018
 ---
 
 ### Katarina
 
-OffensEval paperi: 
+OffensEval paperi:
 - [Automated Hate Speech Detection and the Problem of Offensive Language∗](https://arxiv.org/pdf/1703.04009.pdf)
 - [Detecting Offensive Language in Tweets Using Deep Learning](https://arxiv.org/abs/1801.04433)
 
