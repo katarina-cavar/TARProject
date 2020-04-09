@@ -15,8 +15,42 @@ The Offensive Language Identification Dataset (OLID) contains a collection of 14
     - Other (OTH) - e.g., an organization, a situation, an event, or an issue
     
 ----------
+### Distribution over category
+- Dataset: __13 240 tweets__
+- Columns:
+  - id
+  - tweet
+  - subtask_a
+  - subtask_b
+  - subtask_c
 
-- __[Benchmarks - Level A](https://arxiv.org/pdf/1902.09666.pdf)__
+ - __Level A__ (100% of dataset not nan)
+ 
+|subtask_a |Total|	Percentage|
+|--|--|--|		
+|NOT|	8840|	0.667674|
+|OFF | 4400	|0.332326|
+
+- __Level B__(33.23% of dataset not nan)
+
+|subtask_b|	Total	|Percentage|
+|--|--|--|		
+|TIN	|3876	|0.880909|
+|UNT	|524|	0.119091|
+
+- __Level C__ (29.27% of dataset not nan)
+
+
+|subtask_c|	Total|	Percentage|
+|--|--|--|	
+|GRP	|1074|	0.277090|
+|IND	|2407	|0.621001|
+|OTH	|395	|0.101909|
+
+----------
+
+
+### [Benchmarks - Level A](https://arxiv.org/pdf/1902.09666.pdf)__
   - SVM
   - BiLSTM
   - CNN
