@@ -21,6 +21,7 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 ### Sanja
 
 - [Abusive Language Detection in Online User Content](https://dl.acm.org/doi/pdf/10.1145/2872427.2883062)
+- [Understanding Abuse: A Typology of Abusive Language Detection Subtasks](https://www.aclweb.org/anthology/W17-3012/)
 
 
 ---
