@@ -34,6 +34,7 @@ for Germeval Task 2018](https://epub.oeaw.ac.at/0xc1aa5576_0x003a10e4.pdf)
 
 OffensEval paperi: 
 - [Automated Hate Speech Detection and the Problem of Offensive Language∗](https://arxiv.org/pdf/1703.04009.pdf)
+- [Detecting Offensive Language in Tweets Using Deep Learning](https://arxiv.org/abs/1801.04433)
 
 Paperi opcenito za NLP, ne usko vezani za OffensEval
 - [Transformers: Attention is All You Need](https://arxiv.org/abs/1706.03762)
