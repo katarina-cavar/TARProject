@@ -49,3 +49,8 @@ in Social Media (OffensEval)](https://arxiv.org/pdf/1903.08983.pdf)
 6. [**GermEval**- Proceedings of the GermEval 2018 Workshop](https://epub.oeaw.ac.at/?arp=0x003a10e4)
 	- [Offensive Language Detection with Neural Networks](https://epub.oeaw.ac.at/0xc1aa5576_0x003a10e4.pdf)
 7. [Detecting Offensive Language in Tweets Using Deep Learning](https://arxiv.org/abs/1801.04433)
+
+
+## [Machine Learning Mastery: START HERE](https://machinelearningmastery.com/start-here/)
+
+- [Deep Learning for NLP](https://machinelearningmastery.com/start-here/#nlp)
