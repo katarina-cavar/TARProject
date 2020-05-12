@@ -1,0 +1,65 @@
+**Params:**
+```
+DATA_FILE="../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"
+MODEL_NAME="modelKeras"
+MODEL_TYPE="LSTM_model2"
+PREPROC="remove_stopwords_and_punctuation_textblob"
+
+VOCAB_SIZE=2500
+EMBEDDING_DIM=16
+MAX_LENGTH=64
+TRUNC_TYPE="post"
+PADDING_TYPE="post"
+OOV_TOK="<OOV>"
+TRAINING_PORTION=0.8
+NUM_EPOCHS=20
+```
+- LSTM model: 
+```
+Epoch 20/20
+
+
+10560/10592 [============================>.] - ETA: 0s - loss: 0.6352 - acc: 0.6684
+10592/10592 [==============================] - 11s 1ms/sample - loss: 0.6353 - acc: 0.6682 - val_loss: 0.6355 - val_acc: 0.6681
+0it [00:00, ?it/s]
+
+2648/2648 [==============================] - 0s 157us/sample - loss: 0.6355 - acc: 0.6681
+0it [00:00, ?it/s]
+
+SCORES:
+[0.635544828777947, 0.66805136]
+
+```
+
+- LSTM model 2: 
+```
+Epoch 20/20
+
+
+10592/10592 [==============================] - 9s 841us/sample - loss: 0.5795 - acc: 0.6719 - val_loss: 0.5881 - val_acc: 0.7024
+
+
+2648/2648 [==============================] - 0s 149us/sample - loss: 0.5881 - acc: 0.7024
+
+SCORES:
+[0.5880656010074558, 0.7024169]
+
+```
+
+**PREPROC="remove_punctuation"**
+
+- LSTM_model2:
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.5755 - acc: 0.7299
+10592/10592 [==============================] - 10s 925us/sample - loss: 0.5751 - acc: 0.7303 - val_loss: 0.6082 - val_acc: 0.6975
+
+
+2592/2648 [============================>.] - ETA: 0s - loss: 0.6090 - acc: 0.6968
+2648/2648 [==============================] - 0s 166us/sample - loss: 0.6082 - acc: 0.6975
+
+
+
+SCORES:
+[0.6082250519101353, 0.69750756]
+
+```
