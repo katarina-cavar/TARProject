@@ -241,6 +241,24 @@ def LSTM_model2(args):
 
 	return model
 
+def BiLSTM_model(args):
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+	LSTM_OUT = 128
+
+	model = tf.keras.Sequential([
+		tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH),
+		tf.keras.layers.Dropout(0.5),
+		tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(LSTM_OUT)),
+		tf.keras.layers.Dense(64, activation="relu"),
+		tf.keras.layers.Dense(32, activation="relu"),
+		tf.keras.layers.Dense(1, activation="sigmoid")
+	])
+
+	return model
+
 
 
 
@@ -249,7 +267,7 @@ def main():
 	parser.add_argument("data_file", metavar="DATAFILE")
 	parser.add_argument("model_name", metavar="MODELNAME")
 	parser.add_argument("model_type", metavar="MODEL_TYPE", 
-		choices=['basic_model', 'LSTM_model', 'LSTM_model2'])
+		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 'BiLSTM_model'])
 	parser.add_argument("preproc", metavar="PREPROCESSING", 
 		choices=['no_preprocessing', 'remove_punctuation', 
 		'remove_stopwords_and_punctuation', 
@@ -326,6 +344,8 @@ def main():
 		model = LSTM_model(args)
 	elif args.model_type == "LSTM_model2":
 		model = LSTM_model2(args)
+	elif args.model_type == "BiLSTM_model":
+		model = BiLSTM_model(args)
 	else: 
 		model = basic_model(args)
 
