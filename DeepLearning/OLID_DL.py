@@ -68,13 +68,13 @@ class Preprocessor:
 
 		stop = stopwords.words("english")
 		stop.append("’")
+		stop.append("@user")
 
 		tknzr = TweetTokenizer()
 
 		if verbose:
 			print(type(stop))
 			print(stop)
-		noise = ["user"]
 		for i in range(len(data)):
 			if verbose:
 				print(data[i])
@@ -115,11 +115,11 @@ class Preprocessor:
 
 	    stop = stopwords.words("english")
 	    stop.append("’")
+	    stop.append("user")
 	    
 	    if verbose:
 	        print(type(stop))
 	        print(stop)
-	    noise = ["user"]
 	    for i in range(len(data)):
 	        if verbose:
 	            print(data[i])
@@ -246,11 +246,12 @@ def BiLSTM_model(args):
 	EMBEDDING_DIM = args.emb_dim
 	MAX_LENGTH = args.max_len
 	NUM_EPOCHS = args.num_epochs
-	LSTM_OUT = 128
+	LSTM_OUT = args.lstm_out
+	DROPOUT = args.dropout
 
 	model = tf.keras.Sequential([
 		tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH),
-		tf.keras.layers.Dropout(0.5),
+		tf.keras.layers.Dropout(DROPOUT),
 		tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(LSTM_OUT)),
 		tf.keras.layers.Dense(64, activation="relu"),
 		tf.keras.layers.Dense(32, activation="relu"),
@@ -259,7 +260,100 @@ def BiLSTM_model(args):
 
 	return model
 
+def BiLSTM_moreReg_model(args):
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+	LSTM_OUT = args.lstm_out
+	DROPOUT = args.dropout
 
+	model = tf.keras.Sequential([
+		tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH),
+		tf.keras.layers.Dropout(DROPOUT),
+		tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(LSTM_OUT, dropout=0.2, recurrent_dropout=0.2)),
+		tf.keras.layers.Dense(64, activation="relu"),
+		tf.keras.layers.Dense(32, activation="relu"),
+		tf.keras.layers.Dense(1, activation="sigmoid")
+	])
+
+	return model
+
+def BiLSTM_moreReg_model2(args):
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+	LSTM_OUT = args.lstm_out
+	DROPOUT = args.dropout
+
+	model = tf.keras.Sequential([
+		tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH),
+		tf.keras.layers.Dropout(DROPOUT),
+		tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(LSTM_OUT, dropout=0.2, recurrent_dropout=0.2)),
+		tf.keras.layers.Dense(64, activation="relu"),
+		tf.keras.layers.Dense(32, activation="relu"),
+		tf.keras.layers.Dense(1, activation="sigmoid")
+	])
+
+	return model
+
+def CNN_model(args):
+	# Source: https://keras.io/examples/imdb_cnn/
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+	LSTM_OUT = args.lstm_out
+	DROPOUT = args.dropout
+	FILTERS = args.num_filters
+	KERNEL_SIZE = args.kernel_size
+	STRIDES = args.strides
+
+	model = tf.keras.Sequential([
+		tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH),
+		tf.keras.layers.Dropout(DROPOUT),
+		tf.keras.layers.Conv1D(FILTERS, KERNEL_SIZE, padding="valid", 
+			activation="relu", strides=STRIDES),
+		tf.keras.layers.GlobalMaxPooling1D(),
+		tf.keras.layers.Dense(250),
+		tf.keras.layers.Dropout(DROPOUT),
+		tf.keras.layers.Activation("relu"),
+		tf.keras.layers.Dense(1, activation="sigmoid")
+	])
+
+	return model
+
+# Not finished
+def BiLSTM_CNN_model(args):
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+	LSTM_OUT = args.lstm_out
+	DROPOUT = args.dropout
+	FILTERS = args.num_filters
+	KERNEL_SIZE = args.kernel_size
+	STRIDES = args.strides
+
+	inp = tf.keras.layers.Input((MAX_LENGTH,))
+	emb = tf.keras.layers.Embedding(VOCAB_SIZE, EMBEDDING_DIM, input_length=MAX_LENGTH)(inp)
+	emb = tf.keras.layers.Dropout(DROPOUT)(emb)
+
+	conv = tf.keras.layers.Conv1D(FILTERS, KERNEL_SIZE, padding="valid", 
+			activation="relu", strides=STRIDES)(emb)
+	pool = tf.keras.layers.GlobalMaxPooling1D()(conv)
+
+	lstm = tf.keras.layers.Bidirectional(tf.keras.layers.LSTM(LSTM_OUT, 
+		dropout=0.2, recurrent_dropout=0.2))(emb)
+
+	combined = tf.keras.layers.concatenate([pool, lstm])
+	dense1 = tf.keras.layers.Dense(128, activation="relu")(combined)
+	dense2 = tf.keras.layers.Dense(32, activation="relu")(dense1)
+	output = tf.keras.layers.Dense(1, activation="sigmoid")(dense2)
+
+
+	return tf.keras.models.Model(inp, output)
 
 
 def main():
@@ -267,7 +361,9 @@ def main():
 	parser.add_argument("data_file", metavar="DATAFILE")
 	parser.add_argument("model_name", metavar="MODELNAME")
 	parser.add_argument("model_type", metavar="MODEL_TYPE", 
-		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 'BiLSTM_model'])
+		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 'BiLSTM_model',
+		'BiLSTM_moreReg_model', 'BiLSTM_moreReg_model2',
+		'BiLSTM_CNN_model', 'CNN_model'])
 	parser.add_argument("preproc", metavar="PREPROCESSING", 
 		choices=['no_preprocessing', 'remove_punctuation', 
 		'remove_stopwords_and_punctuation', 
@@ -321,6 +417,36 @@ def main():
 	    type=int,
 	    required=True,
 	)
+	parser.add_argument(
+	    "--lstm_out",
+	    default=None,
+	    type=int,
+	    required=True,
+	)
+	parser.add_argument(
+	    "--num_filters",
+	    default=None,
+	    type=int,
+	    required=True,
+	)
+	parser.add_argument(
+	    "--dropout",
+	    default=None,
+	    type=float,
+	    required=True,
+	)
+	parser.add_argument(
+	    "--kernel_size",
+	    default=None,
+	    type=int,
+	    required=True,
+	)
+	parser.add_argument(
+	    "--strides",
+	    default=None,
+	    type=int,
+	    required=True,
+	)
 	args = parser.parse_args()
 
 	dr = DataReader()
@@ -346,6 +472,12 @@ def main():
 		model = LSTM_model2(args)
 	elif args.model_type == "BiLSTM_model":
 		model = BiLSTM_model(args)
+	elif args.model_type == "BiLSTM_moreReg_model":
+		model = BiLSTM_moreReg_model(args)
+	elif args.model_type == "BiLSTM_moreReg_model2":
+		model = BiLSTM_moreReg_model2(args)
+	elif args.model_type == "BiLSTM_CNN_model":
+		model = BiLSTM_CNN_model(args)
 	else: 
 		model = basic_model(args)
 
@@ -361,16 +493,18 @@ def main():
 	print(scores)
 
 	# Save model
-	model_name = "{}_type={}_proc={}_epochs={}".format(args.model_name, 
-		args.model_type, args.preproc, args.num_epochs)
+	model_name = "{}_type={}_proc={}_epochs={}_emb_dim={}_vocab={}".format(args.model_name, 
+		args.model_type, args.preproc, args.num_epochs, args.emb_dim, args.vocab_size)
 
 	# serialize model to json
 	model_json = model.to_json()
-	with open(model_name+".json", "w") as json_file: 
+	with open("models/" + model_name+".json", "w") as json_file: 
 	    json_file.write(model_json)
 
 	# serialize weights to HDF5
-	model.save_weights(model_name+".h5")
+	model.save_weights("models/" + model_name+".h5")
 	print("\n--> Saved model to disk.")
+
+	print(args)
 
 main()
