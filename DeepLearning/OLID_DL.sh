@@ -3,7 +3,7 @@
 export CUDA_VISIBLE_DEVICES=-1 #CPU
 DATA_FILE="../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"
 MODEL_NAME="modelKeras_removeUser_emb128"
-MODEL_TYPE='BiLSTM_CNN_model'
+MODEL_TYPE='basic_model'
 PREPROC="remove_stopwords_and_punctuation_textblob"
 
 VOCAB_SIZE=7500

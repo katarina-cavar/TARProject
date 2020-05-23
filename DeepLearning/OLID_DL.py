@@ -15,6 +15,7 @@ from nltk.tokenize import TweetTokenizer
 import tensorflow as tf 
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
 import nltk
 nltk.download("stopwords")
@@ -357,6 +358,11 @@ def BiLSTM_CNN_model(args):
 
 
 def main():
+
+	"""
+		Loading Arguments
+	"""
+
 	parser = argparse.ArgumentParser(description="Train a new model for OLID")
 	parser.add_argument("data_file", metavar="DATAFILE")
 	parser.add_argument("model_name", metavar="MODELNAME")
@@ -449,6 +455,10 @@ def main():
 	)
 	args = parser.parse_args()
 
+	"""
+		Data Reading + Preprocessing 
+	"""
+
 	dr = DataReader()
 	data, labels = dr.get_np_data_and_labels(args.data_file)
 
@@ -462,6 +472,11 @@ def main():
 		proc_data = pp.remove_stopwords_and_punctuation(data.copy(), verbose=False)
 	else:
 		proc_data = pp.remove_stopwords_and_punctuation_textblob(data.copy(), verbose=False)
+
+
+	"""
+		Creating the model
+	"""
 
 
 	train_x, train_y, val_x, val_y = get_train_val(proc_data, labels, args)
@@ -484,8 +499,29 @@ def main():
 	model.compile(loss = "binary_crossentropy", optimizer = "adam", metrics = ["acc"])
 	model.summary()
 
+	"""
+		Callbacks
+	"""
+
+	model_name = "{}_type={}_proc={}_epochs={}_emb_dim={}_vocab={}".format(args.model_name, 
+		args.model_type, args.preproc, args.num_epochs, args.emb_dim, args.vocab_size)
+
+	callback_list = []
+
+	monitor = "val_acc"
+	monitor_mode = "max"
+	mc = ModelCheckpoint(filepath="models/" + model_name, verbose=1, save_best_only=True, 
+		monitor=monitor, mode=monitor_mode)
+	callback_list.append(mc)
+
+	patience = 15
+
+	es = EarlyStopping(monitor=monitor, mode=monitor_mode, patience=patience, verbose=1)
+	callback_list.append(es)
+
 	history = model.fit(train_x, train_y,
-	         epochs=args.num_epochs, validation_data=(val_x, val_y))
+	         epochs=args.num_epochs, validation_data=(val_x, val_y),
+	         callbacks=callback_list)
 
 	scores = model.evaluate(val_x, val_y)
 
@@ -493,8 +529,7 @@ def main():
 	print(scores)
 
 	# Save model
-	model_name = "{}_type={}_proc={}_epochs={}_emb_dim={}_vocab={}".format(args.model_name, 
-		args.model_type, args.preproc, args.num_epochs, args.emb_dim, args.vocab_size)
+	
 
 	# serialize model to json
 	model_json = model.to_json()
