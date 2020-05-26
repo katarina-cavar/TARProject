@@ -1,5 +1,4 @@
-from nltk.tokenize import TweetTokenizer
-import string
+from nltk.tokenize import TweetTokenizer, RegexpTokenizer
 
 
 def tweetTokenizer(tweet):
@@ -10,35 +9,27 @@ def tweetTokenizer(tweet):
     return tweet_tokenizer.tokenize(tweet)
 
 
+def matchTokenizer(tweet):
+    # removes everything except word, numbers and '-'
+    match_tokenizer = RegexpTokenizer("[\w-]+")
+    return match_tokenizer.tokenize(tweet)
+
+
 def main():
     with open('Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
         for cnt, line1 in enumerate(fin):
             _, tweet, offensive, _, _ = line1.strip().split('\t')
 
-            # apply nltk tweet tokenizer
+            # apply nltk tokenizers
             tweet = tweetTokenizer(tweet)
+            tweet = matchTokenizer(' '.join(tweet))
 
-            # additional improvements
-            table = str.maketrans(dict.fromkeys(string.punctuation))
-            tweet2 = tweet.copy()
-            tweet = []
-            for word in tweet2:
-                if word == '' or word == '“' or word == '’' or word == '..' or word == '...':
-                    continue
-                if len(word) == 1:
-                    if word.translate(table) == '':
-                        continue
-                if word.startswith('#'):
-                    tweet.append(word[1:])
-                    continue
-                tweet.append(word)
-
-            # remove stopwords
+            # remove stopwords and single '-'
             stopwords = set()
             with open('baseline/resources/stopwords.csv') as fin:
                 for line in fin:
                     stopwords.add(line.strip())
-            tweet = [x for x in tweet if x not in stopwords]
+            tweet = [x for x in tweet if x not in stopwords and x != '-']
 
             print(tweet)
 
