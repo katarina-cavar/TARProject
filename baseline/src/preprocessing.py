@@ -16,7 +16,7 @@ def customTokenizer(tweet):
     tweet_new = []
 
     for word in tweet:
-        if word == '' or word == '?' or word == '?' or word == '..' or word == '...':
+        if word == '' or word == '..' or word == '...':
             continue
         if len(word) == 1:
             if word.translate(table) == '':
@@ -30,7 +30,7 @@ def customTokenizer(tweet):
 
 
 def main():
-    with open('/home/sanja/Desktop/TARProject/Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
+    with open('Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
         for cnt, line1 in enumerate(fin):
             _, tweet, offensive, _, _ = line1.strip().split('\t')
 
