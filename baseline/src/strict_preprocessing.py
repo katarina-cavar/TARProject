@@ -1,4 +1,5 @@
 from nltk.tokenize import TweetTokenizer, RegexpTokenizer
+from nltk.corpus import stopwords
 
 
 def tweetTokenizer(tweet):
@@ -25,11 +26,8 @@ def main():
             tweet = matchTokenizer(' '.join(tweet))
 
             # remove stopwords and single '-'
-            stopwords = set()
-            with open('baseline/resources/stopwords.csv') as fin:
-                for line in fin:
-                    stopwords.add(line.strip())
-            tweet = [x for x in tweet if x not in stopwords and x != '-']
+            stop_words = set(stopwords.words('english'))
+            tweet = [word for word in tweet if word not in stop_words and word != '-']
 
             print(tweet)
 

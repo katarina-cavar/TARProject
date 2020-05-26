@@ -1,4 +1,5 @@
 from nltk.tokenize import TweetTokenizer
+from nltk.corpus import stopwords
 import string
 
 
@@ -10,8 +11,26 @@ def tweetTokenizer(tweet):
     return tweet_tokenizer.tokenize(tweet)
 
 
+def customTokenizer(tweet):
+    table = str.maketrans(dict.fromkeys(string.punctuation))
+    tweet_new = []
+
+    for word in tweet:
+        if word == '' or word == '?' or word == '?' or word == '..' or word == '...':
+            continue
+        if len(word) == 1:
+            if word.translate(table) == '':
+                continue
+        if word.startswith('#'):
+            tweet_new.append(word[1:])
+            continue
+        tweet_new.append(word)
+
+    return tweet_new
+
+
 def main():
-    with open('Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
+    with open('/home/sanja/Desktop/TARProject/Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
         for cnt, line1 in enumerate(fin):
             _, tweet, offensive, _, _ = line1.strip().split('\t')
 
@@ -19,26 +38,11 @@ def main():
             tweet = tweetTokenizer(tweet)
 
             # additional improvements
-            table = str.maketrans(dict.fromkeys(string.punctuation))
-            tweet2 = tweet.copy()
-            tweet = []
-            for word in tweet2:
-                if word == '' or word == '“' or word == '’' or word == '..' or word == '...':
-                    continue
-                if len(word) == 1:
-                    if word.translate(table) == '':
-                        continue
-                if word.startswith('#'):
-                    tweet.append(word[1:])
-                    continue
-                tweet.append(word)
+            tweet = customTokenizer(tweet)
 
             # remove stopwords
-            stopwords = set()
-            with open('baseline/resources/stopwords.csv') as fin:
-                for line in fin:
-                    stopwords.add(line.strip())
-            tweet = [x for x in tweet if x not in stopwords]
+            stop_words = set(stopwords.words('english'))
+            tweet = [word for word in tweet if word not in stop_words]
 
             print(tweet)
 
