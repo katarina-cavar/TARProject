@@ -58,6 +58,9 @@ def main():
     accuracy = 0
     with open('../Dataset-OLID/OLIDv1.0/olid-training-v1.0.tsv') as fin:
         for cnt, line in enumerate(fin):
+            if cnt == 0:
+                continue
+
             _, tweet, offensive, _, _ = line.strip().split('\t')
 
             # OFF - offensive
@@ -68,7 +71,7 @@ def main():
             tweet = tweet.replace('@USER', '')
 
             # TODO choose tokenizer function
-            tweet = customTokenizer(tweet)
+            tweet = tweetTokenizer(tweet)
 
             # check if a word in tweet is in the offensive words dataset
             isOffensive = False
@@ -81,7 +84,7 @@ def main():
             if offensive == isOffensive:
                 accuracy += 1
 
-        accuracy = accuracy / (cnt + 1) * 100
+        accuracy = accuracy / cnt * 100
         print('Accuracy: {}%'.format(str(round(accuracy, 4))))
 
 
