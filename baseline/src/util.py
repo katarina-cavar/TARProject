@@ -15,11 +15,10 @@ with open('../../Dataset-MTSA/extracted_tweets.tsv', encoding='utf-8') as fin:
     for cnt, line in enumerate(fin):
         if cnt == 0:
             header = line
-            continue
         data.append(line)
 
 train, test = partition(data, 0.935)
-print(len(train), len(test))
+
 with open('../../Dataset-MTSA/tweets_train.tsv', 'w', encoding='utf-8') as fout:
     fout.write(header)
     [fout.write(t) for t in train]
