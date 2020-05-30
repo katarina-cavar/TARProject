@@ -4,7 +4,9 @@
 - implementirati early stopping
 	- done 
 - embeddinzi sa word2vec 
-
+- shuffle prije test-val podjele :) 
+- cross validation
+- check the paper how others did it
 
 ## Useful links: 
 
