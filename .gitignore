@@ -1,1 +1,3 @@
 ./DeepLearning/final_scripts/models/*
+./DeepLearning/final_scripts/saved_models/*
+./DeepLearning/final_scripts/tokenizers/*
