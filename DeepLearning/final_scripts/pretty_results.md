@@ -165,11 +165,26 @@ POOL_SIZE=2
 		- 				\-> conv1d -> global max pool 1d ------------------/
 		- 				\-> conv1d -> global max pool 1d ------------------/
 		- 				\-> conv1d -> global max pool 1d ------------------/
-2. Results: 
+2. Results **lstm_out=32, num_filters = 16, lr = 0.001**: 
 		- Epoch [18]: val_f1 did not improve from: from 0.65417
 		- **val:** `loss: 0.4786 - acc: 0.7900 - rec: 0.6327 - prec: 0.7019 - f1: 0.6541`
 		- **test:** `loss: 0.4248 - acc: 0.8302 - rec: 0.5047 - prec: 0.7900 - f1: 0.5948`
-
+3. Results **lstm_out=32, num_filters = 32, lr = 0.001**: 
+		- Epoch [21]: val_f1 did not improve from: 0.65580
+		- **val:** `loss: 0.4712 - acc: 0.7931 - rec: 0.6253 - prec: 0.7219 - f1: 0.6595`
+		- **test:** `loss: 0.4281 - acc: 0.8337 - rec: 0.4976 - prec: 0.8268 - f1: 0.6032`
+4. Results **lstm_out=64, num_filters = 64, lr = 0.001**: 
+		- Epoch [22]: val_f1 did not improve from: 0.65145
+		- **val:** `loss: 0.4833 - acc: 0.7783 - rec: 0.6738 - prec: 0.6638 - f1: 0.6590`
+		- **test:** `loss: 0.4283 - acc: 0.8163 - rec: 0.6660 - prec: 0.6738 - f1: 0.6567`
+5. Results **lstm_out=64, num_filters = 16, lr = 0.001**: 
+		- Epoch [20]: val_f1 did not improve from: 0.65929
+		- **val:** `loss: 0.5067 - acc: 0.7772 - rec: 0.6888 - prec: 0.6570 - f1: 0.6628`
+		- **test:** `loss: 0.4575 - acc: 0.7930 - rec: 0.6545 - prec: 0.6172 - f1: 0.6226`
+5. Results **lstm_out=64, num_filters = 16, lr = 0.0001**: 
+		- Epoch [30]: val_f1 did not improve from: 0.65957
+		- **val:** `loss: 0.4712 - acc: 0.7931 - rec: 0.6253 - prec: 0.7219 - f1: 0.6595`
+		- **test:** `loss: 0.4281 - acc: 0.8337 - rec: 0.4976 - prec: 0.8268 - f1: 0.6032`
 
 ## BiLSTM2 CNN supershort model
 
@@ -178,8 +193,9 @@ POOL_SIZE=2
 		- 				\-> conv1d -> global max pool 1d ------------------/
 		- 				\-> conv1d -> global max pool 1d ------------------/
 		- 				\-> conv1d -> global max pool 1d ------------------/
-2. Results: 
+2. Results **lstm_out=32, num_filters=16**: 
 		- Epoch [17]: val_f1 did not improve from: 0.65606
 		- **val:** `loss: 0.4600 - acc: 0.7953 - rec: 0.6003 - prec: 0.7337 - f1: 0.6491`
 		- **test:** `loss: 0.4178 - acc: 0.8349 - rec: 0.4979 - prec: 0.8273 - f1: 0.6111`
+
 

@@ -296,13 +296,14 @@ Scores on test:
 
 ## Latest: 
 
-- BiLSTM2_CNN3_short_model
+
 ```
 10560/10592 [============================>.] - ETA: 0s - loss: 0.1405 - acc: 0.9455 - rec: 0.9151 - prec: 0.9223 - f1: 0.9147
 Epoch 00018: val_f1 did not improve from 0.66817
 
 10592/10592 [==============================] - 62s 6ms/sample - loss: 0.1407 - acc: 0.9454 - rec: 0.9151 - prec: 0.9223 - f1: 0.9147 - val_loss: 1.0885 - val_acc: 0.7564 - val_rec: 0.5873 - val_prec: 0.6481 - val_f1: 0.6061
 Epoch 00018: early stopping
+
 2648/2648 [==============================] - 2s 802us/sample - loss: 1.0885 - acc: 0.7564 - rec: 0.5864 - prec: 0.6415 - f1: 0.6032
 
 SCORES:

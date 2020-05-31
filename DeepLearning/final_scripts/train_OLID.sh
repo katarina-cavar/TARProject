@@ -6,7 +6,7 @@ TEST_FILE="../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv"
 EMB_FILE="../../../0_embeddings/glove.6B/glove.6B.300d.txt" #options: {50,100,200,300}d
 MODEL_NAME="modelKeras"
 MODEL_TYPE='BiLSTM2_CNN3_short_model'
-PREPROC="remove_stopwords_and_punctuation_textblob"
+PREPROC="remove_stopwords_and_punctuation"
 
 VOCAB_SIZE=7500
 EMBEDDING_DIM=300

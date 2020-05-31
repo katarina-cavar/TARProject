@@ -78,7 +78,7 @@ class Preprocessor:
         stop.append("’")
         stop.append("@user")
 
-        tknzr = TweetTokenizer()
+        tknzr = TweetTokenizer(preserve_case=False, strip_handles=True, reduce_len=True)
 
         if verbose:
             print(type(stop))
