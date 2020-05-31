@@ -25,7 +25,7 @@ def f1(y_true, y_pred):
 
 
 class DataReader:
-    def __init__(self, task_a="../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"):
+    def __init__(self, task_a="../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"):
         self.task_a = task_a
         
     def get_df_train_data(self):
@@ -33,13 +33,17 @@ class DataReader:
         train_tweets = train_data.drop(["Unnamed: 0", "id", "subtask_a"], axis=1)
         return train_tweets
     
-    def get_df_data(self, file="../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"):
+    def get_df_data(self, file="../Dataset-OLID/OLIDv1.0/data_subtask_a.csv", 
+                   column_names_list = ["tweet", "label_a"]):
         data = pd.read_csv(file)
-        train_tweets = data.drop(["Unnamed: 0", "id", "subtask_a"], axis=1)
+        train_tweets = data[column_names_list]
+        #train_tweets = data.drop(["Unnamed: 0", "id", "subtask_a"], axis=1)
         return train_tweets
     
-    def get_np_data_and_labels(self, file="../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"):
-        tweets = self.get_df_data(file)
+    def get_np_data_and_labels(self, 
+                               file="../Dataset-OLID/OLIDv1.0/data_subtask_a.csv", 
+                              column_names_list = ["tweet", "label_a"]):
+        tweets = self.get_df_data(file, column_names_list)
         data, labels = tweets.values[:,0], tweets.values[:,1]
         return data, labels
     

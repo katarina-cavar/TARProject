@@ -11,6 +11,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 from tensorflow.keras.models import model_from_json, load_model
 
 from new_prints import line_print, title_print
+import pickle
 
 import nltk
 nltk.download("stopwords")
@@ -309,6 +310,9 @@ def main():
 								padding=PADDING_TYPE, truncating=TRUNC_TYPE)
 
 	test_x, test_y = test_padded, test_labels
+
+	with open("tokenizers/tokenizer_maxlen={}.pickle".format(MAX_LENGTH), "wb") as handle: 
+		pickle.dump(tokenizer, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 	"""

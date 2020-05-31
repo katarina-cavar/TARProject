@@ -292,3 +292,32 @@ Scores on test:
 [0.45783954775610636, 0.8104651, 0.5840562, 0.6739631, 0.61404926]
 
 ```
+
+
+## Latest: 
+
+- BiLSTM2_CNN3_short_model
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.1405 - acc: 0.9455 - rec: 0.9151 - prec: 0.9223 - f1: 0.9147
+Epoch 00018: val_f1 did not improve from 0.66817
+
+10592/10592 [==============================] - 62s 6ms/sample - loss: 0.1407 - acc: 0.9454 - rec: 0.9151 - prec: 0.9223 - f1: 0.9147 - val_loss: 1.0885 - val_acc: 0.7564 - val_rec: 0.5873 - val_prec: 0.6481 - val_f1: 0.6061
+Epoch 00018: early stopping
+2648/2648 [==============================] - 2s 802us/sample - loss: 1.0885 - acc: 0.7564 - rec: 0.5864 - prec: 0.6415 - f1: 0.6032
+
+SCORES:
+[1.0884670001142334, 0.75641996, 0.5863989, 0.64148796, 0.60323817]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras', model_type='BiLSTM2_CNN3_short_model', num_epochs=50, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 4s 2ms/sample - loss: 0.4738 - acc: 0.7919 - rec: 0.6430 - prec: 0.7097 - f1: 0.6637
+[0.47384217962217473, 0.79191846, 0.6429647, 0.7097382, 0.66365886]
+
+Scores on test:
+860/860 [==============================] - 1s 1ms/sample - loss: 0.4251 - acc: 0.8349 - rec: 0.5495 - prec: 0.7594 - f1: 0.6253
+[0.42508711149526196, 0.83488375, 0.5495007, 0.75937015, 0.6252544]
+
+```
