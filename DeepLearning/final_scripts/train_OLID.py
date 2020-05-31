@@ -8,6 +8,9 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
+from tensorflow.keras.models import model_from_json, load_model
+
+from new_prints import line_print, title_print
 
 import nltk
 nltk.download("stopwords")
@@ -15,9 +18,11 @@ nltk.download("stopwords")
 #import gensim
 #from gensim.models import Word2Vec 
 
-from data_processing import DataReader, Preprocessor
+from data_processing import DataReader, Preprocessor, rec, prec, f1
 from dl_models import basic_model, LSTM_model, LSTM_model2, BiLSTM_model, \
-BiLSTM_moreReg_model, BiLSTM_moreReg_model2, CNN_model, BiLSTM_CNN_model
+BiLSTM_moreReg_model, BiLSTM_moreReg_model2, CNN_model, BiLSTM_CNN_model, BiLSTM2_model, \
+BiLSTM2_CNN_model, BiLSTM2_CNN3_model, BiLSTM_short_model, BiLSTM2_CNN3_short_model, \
+BiLSTM2_CNN3_supershort_model
 
 
 def get_arguments():
@@ -27,9 +32,12 @@ def get_arguments():
 	parser.add_argument("emb_file", metavar="EMBFILE")
 	parser.add_argument("model_name", metavar="MODELNAME")
 	parser.add_argument("model_type", metavar="MODEL_TYPE", 
-		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 'BiLSTM_model',
+		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 
+		'BiLSTM_model', 'BiLSTM_short_model',
 		'BiLSTM_moreReg_model', 'BiLSTM_moreReg_model2',
-		'BiLSTM_CNN_model', 'CNN_model'])
+		'BiLSTM_CNN_model', 'CNN_model', 'BiLSTM2_model',
+		'BiLSTM2_CNN_model', 'BiLSTM2_CNN3_model', 
+		'BiLSTM2_CNN3_short_model', 'BiLSTM2_CNN3_supershort_model'])
 	parser.add_argument("preproc", metavar="PREPROCESSING", 
 		choices=['no_preprocessing', 'remove_punctuation', 
 		'remove_stopwords_and_punctuation', 
@@ -119,6 +127,18 @@ def get_arguments():
 	    type=float,
 	    required=True,
 	)
+	parser.add_argument(
+	    "--verbose",
+	    default=1,
+	    type=int,
+	    required=True,
+	)
+	parser.add_argument(
+	    "--pool_size",
+	    default=2,
+	    type=int,
+	    required=True,
+	)
 	args = parser.parse_args()
 
 	return args
@@ -135,7 +155,6 @@ def get_train_val(messages, labels, args):
 	TRAINING_PORTION = args.train_portion
 
 	train_number = int(len(messages) * TRAINING_PORTION)
-
 	train_msgs = messages[:train_number]
 	train_labels = labels[:train_number]
 	val_msgs = messages[train_number:]
@@ -310,18 +329,33 @@ def main():
 		model = LSTM_model2(args, embedding_matrix)
 	elif args.model_type == "BiLSTM_model":
 		model = BiLSTM_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM_short_model":
+		model = BiLSTM_short_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM2_model":
+		model = BiLSTM2_model(args, embedding_matrix)
 	elif args.model_type == "BiLSTM_moreReg_model":
 		model = BiLSTM_moreReg_model(args, embedding_matrix)
 	elif args.model_type == "BiLSTM_moreReg_model2":
 		model = BiLSTM_moreReg_model2(args, embedding_matrix)
 	elif args.model_type == "BiLSTM_CNN_model":
 		model = BiLSTM_CNN_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM2_CNN_model":
+		model = BiLSTM2_CNN_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM2_CNN3_model":
+		model = BiLSTM2_CNN3_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM2_CNN3_short_model":
+		model = BiLSTM2_CNN3_short_model(args, embedding_matrix)
+	elif args.model_type == "BiLSTM2_CNN3_supershort_model":
+		model = BiLSTM2_CNN3_supershort_model(args, embedding_matrix)
 	else: 
 		model = basic_model(args, embedding_matrix)
 
+
+	title_print(args.model_type)
+
 	adam_optimizer = tf.keras.optimizers.Adam(learning_rate=args.LR)
 	model.compile(loss = "binary_crossentropy", optimizer = adam_optimizer, 
-		metrics = ["acc"])
+		metrics = ["acc", rec, prec, f1])
 	model.summary()
 
 	"""
@@ -333,7 +367,7 @@ def main():
 
 	callback_list = []
 
-	monitor = "val_acc"
+	monitor = "val_f1"
 	monitor_mode = "max"
 	mc = ModelCheckpoint(filepath="models/" + model_name, verbose=1, save_best_only=True, 
 		monitor=monitor, mode=monitor_mode)
@@ -346,7 +380,7 @@ def main():
 
 	history = model.fit(train_x, train_y,
 	         epochs=args.num_epochs, validation_data=(val_x, val_y),
-	         callbacks=callback_list)
+	         callbacks=callback_list, verbose=args.verbose)
 
 	scores = model.evaluate(val_x, val_y)
 	#scores = model.evaluate(test_x, test_y)
@@ -354,9 +388,12 @@ def main():
 	print("\nSCORES:")
 	print(scores)
 
+	line_print("Arguments:")
+	print(args)
+
 	# Save model
 	
-
+	"""
 	# serialize model to json
 	model_json = model.to_json()
 	with open("models/" + model_name+".json", "w") as json_file: 
@@ -366,6 +403,31 @@ def main():
 	model.save_weights("models/" + model_name+".h5")
 	print("\n--> Saved model to disk.")
 
-	print(args)
+	line_print("Load model")
+	json_file = open("models/" + model_name + ".json", "r")
+	loaded_model_json = json_file.read()
+	json_file.close()
+	model = model_from_json(loaded_model_json)
+	model.load_weights("models/" + model_name + ".h5")
+	"""
+
+	model = load_model("models/" + model_name, custom_objects={"prec": prec, 
+		"rec": rec, "f1": f1})
+
+	model.compile(loss = "binary_crossentropy", optimizer = adam_optimizer, 
+		metrics = ["acc", rec, prec, f1])
+	
+
+	print("\nScores on val:")
+	scores = model.evaluate(val_x, val_y)
+	print(scores)
+
+	print("\nScores on test:")
+	scores = model.evaluate(test_x, test_y)
+	print(scores)
+
+
+
+
 
 main()
