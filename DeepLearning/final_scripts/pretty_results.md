@@ -37,6 +37,8 @@ POOL_SIZE=2
 		'BiLSTM2_CNN3_short_model', 'BiLSTM2_CNN3_supershort_model'])
 ```
 
+- Early stopping: **Patience = 15**, val_f1
+
 ### Basic model
 
 1. Structure: 
@@ -125,12 +127,59 @@ POOL_SIZE=2
 ## BiLSTM CNN model
 
 1. Structure: 
-		- emb -> dropout -> BiLSTM(+dropout) -> dense(64) -> dense(32) -> dense(1)
+		- emb -> dropout -> BiLSTM(+dropout) -> dense(128) -> dense(32) -> dense(1)
+		- 				\-> conv1d -> GMpool -/
 2. Results: 
 		- Epoch [19]: val_f1 did not improve from: from 0.65768
 		- **val:** `loss: 0.4822 - acc: 0.7889 - rec: 0.6355 - prec: 0.6991 - f1: 0.6558`
 		- **test:** `loss: 0.4328 - acc: 0.8233 - rec: 0.6417 - prec: 0.6821 - f1: 0.6461`
 
 
+## BiLSTM2 CNN model
 
+1. Structure: 
+		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dense(128) -> dense(32) -> dense(1)
+		- 				\-> conv1d -> global max pool 1d ------------------/
+2. Results: 
+		- Epoch [22]: val_f1 did not improve from: from 0.64637
+		- **val:** `loss: 0.5739 - acc: 0.7636 - rec: 0.6847 - prec: 0.6284 - f1: 0.6439`
+		- **test:** `loss: 0.4843 - acc: 0.7849 - rec: 0.7196 - prec: 0.5901 - f1: 0.6357`
+
+## BiLSTM2 CNN3 model
+
+1. Structure: 
+		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dense(512) -> dropout -> dense(128) -> dropout -> dense(32) -> dense(1)
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+2. Results: 
+		- Epoch [20]: val_f1 did not improve from: from 0.65814
+		- **val:** `loss: 0.5116 - acc: 0.7761 - rec: 0.6835 - prec: 0.6562 - f1: 0.6606`
+		- **test:** `loss: 0.4250 - acc: 0.8070 - rec: 0.6367 - prec: 0.6436 - f1: 0.6311`
+
+
+## BiLSTM2 CNN short model
+
+1. Structure: 
+		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dropout -> dense(32) -> dense(1)
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+2. Results: 
+		- Epoch [18]: val_f1 did not improve from: from 0.65417
+		- **val:** `loss: 0.4786 - acc: 0.7900 - rec: 0.6327 - prec: 0.7019 - f1: 0.6541`
+		- **test:** `loss: 0.4248 - acc: 0.8302 - rec: 0.5047 - prec: 0.7900 - f1: 0.5948`
+
+
+## BiLSTM2 CNN supershort model
+
+1. Structure: 
+		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dropout -> dense(1)
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+		- 				\-> conv1d -> global max pool 1d ------------------/
+2. Results: 
+		- Epoch [17]: val_f1 did not improve from: 0.65606
+		- **val:** `loss: 0.4600 - acc: 0.7953 - rec: 0.6003 - prec: 0.7337 - f1: 0.6491`
+		- **test:** `loss: 0.4178 - acc: 0.8349 - rec: 0.4979 - prec: 0.8273 - f1: 0.6111`
 
