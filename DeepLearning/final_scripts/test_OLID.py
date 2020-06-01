@@ -156,6 +156,13 @@ def main():
 	dr = DataReader()
 	test_data, test_labels = dr.get_np_data_and_labels(args.test_file)
 
+	print("\n\n\n")
+	print(type(test_data), type(test_labels))
+	print(test_data.shape, test_labels.shape)
+	print(type(test_data[0]), type(test_labels[0]))
+	print(test_data.encode('utf-8'),test_labels)
+	print("\n\n\n")
+
 	pp = Preprocessor()
 
 	if args.preproc == "no_preprocessing":
