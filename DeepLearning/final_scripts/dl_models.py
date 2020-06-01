@@ -23,6 +23,22 @@ def basic_model(args, embedding_matrix):
 
 	return model
 
+def basic_no_emb_model(args, embedding_matrix):
+	VOCAB_SIZE = args.vocab_size
+	EMBEDDING_DIM = args.emb_dim
+	MAX_LENGTH = args.max_len
+	NUM_EPOCHS = args.num_epochs
+
+	model = tf.keras.Sequential([
+		Embedding(VOCAB_SIZE, EMBEDDING_DIM, 
+			input_length=MAX_LENGTH),
+		GlobalAveragePooling1D(),
+		Dense(24, activation="relu"),
+		Dense(1, activation="sigmoid")
+	])
+
+	return model
+
 def LSTM_model(args, embedding_matrix):
 	# Source: https://www.kaggle.com/ngyptr/lstm-sentiment-analysis-keras
 	VOCAB_SIZE = args.vocab_size

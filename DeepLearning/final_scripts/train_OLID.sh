@@ -1,12 +1,12 @@
 #!/bin/bash
 
-export CUDA_VISIBLE_DEVICES=-1 #CPU
+#export CUDA_VISIBLE_DEVICES=-1 #CPU
 DATA_FILE="../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv"
 TEST_FILE="../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv"
 EMB_FILE="../../../0_embeddings/glove.6B/glove.6B.300d.txt" #options: {50,100,200,300}d
-MODEL_NAME="modelKeras"
-MODEL_TYPE='BiLSTM2_CNN3_short_model'
-PREPROC="remove_stopwords_and_punctuation"
+MODEL_NAME="modelKeras8"
+MODEL_TYPE='BiLSTM2_CNN3_model'
+PREPROC="remove_stopwords_and_punctuation_textblob"
 
 VOCAB_SIZE=7500
 EMBEDDING_DIM=300
@@ -15,7 +15,7 @@ TRUNC_TYPE="post"
 PADDING_TYPE="post"
 OOV_TOK="<OOV>"
 TRAINING_PORTION=0.8
-NUM_EPOCHS=50
+NUM_EPOCHS=10
 LSTM_OUT=32
 NUM_FILTERS=16
 DROPOUT=0.5

@@ -206,6 +206,8 @@ def main():
 	model.compile(loss = "binary_crossentropy", optimizer = adam_optimizer, 
 		metrics = ["acc", rec, prec, f1])
 
+	line_print(args.model_name)
+
 
 	print("\nScores on test:")
 	scores = model.evaluate(test_x, test_y)
@@ -214,6 +216,8 @@ def main():
 	print("\nScores on no proc test:")
 	scores = model.evaluate(no_proc_test_x, no_proc_test_y)
 	print(scores)
+
+	"""
 
 	y_pred = model.predict(no_proc_test_x)
 	line_print("y_pred")
@@ -231,6 +235,7 @@ def main():
 
 	line_print("y_true")
 	#print(no_proc_test_y[:50])
+	"""
 
 
 main()

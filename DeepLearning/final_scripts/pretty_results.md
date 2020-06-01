@@ -39,7 +39,13 @@ POOL_SIZE=2
 
 - Early stopping: **Patience = 15**, val_f1
 
-### Basic model
+### Basic no emb <--
+3. Accs through 3 runs: 
+	- test acc: 0.7709, 0.7012, 0.6965
+	- test f1: 0.5155, 0.4838, 0.5064
+	- mtsa acc: 
+
+### Basic model <--
 
 1. Structure: 
 		-  emb -> global avg pool 1d -> dense(24) -> dense(1)
@@ -47,9 +53,11 @@ POOL_SIZE=2
 		- Epoch [19]: val_f1 did not improve from: 0.63556
 		- **val:** `loss: 0.5576 - acc: 0.7700 - rec: 0.5809 - prec: 0.6734 - f1: 0.6141`
 		- **test:** `loss: 0.6155 - acc: 0.7407 - rec: 0.6142 - prec: 0.5392 - f1: 0.5576`
+3. Accs through 3 runs: 
+	- test acc: 0.7407, 0.7837, 0.7326 
+	- test f1: 0.5576, 0.5436, 0.5473
 
-
-## LSTM model
+## LSTM model 
 
 1. Structure: 
 		-  emb -> spatial dropout 1d -> LSTM -> dense(24) -> dense(1)
@@ -68,7 +76,7 @@ POOL_SIZE=2
 		- **test:** `loss: 0.5982 - acc: 0.7209 - rec: 0.0000e+00 - prec: 0.0000e+00 - f1: 0.0000e+00`
 
 
-## BiLSTM model
+## BiLSTM model <-- 
 
 1. Structure: 
 		- emb -> dropout -> biLSTM -> dense(64) -> dense(32) -> dense(1)
@@ -76,6 +84,9 @@ POOL_SIZE=2
 		- Epoch [17]: val_f1 did not improve from: 0.63016
 		- **val:** `loss: 0.4650 - acc: 0.7946 - rec: 0.5665 - prec: 0.7542 - f1: 0.6344`
 		- **test:** `loss: 0.4162 - acc: 0.8326 - rec: 0.4749 - prec: 0.8272 - f1: 0.5897`
+3. Accs through 3 runs: 
+	- test acc: 0.8326, 0.8302, 0.8233
+	- test f1: 0.5897, 0.5871, 0.6148
 
 ## BiLSTM short model
 
@@ -106,7 +117,7 @@ POOL_SIZE=2
 		- **val:** `loss: 0.4702 - acc: 0.7870 - rec: 0.6340 - prec: 0.6921 - f1: 0.6513`
 		- **test:** `loss: 0.4379 - acc: 0.8302 - rec: 0.5854 - prec: 0.7532 - f1: 0.6441`
 
-## CNN model
+## CNN model <--
 
 1. Structure: 
 		- emb -> dropout -> conv1d -> global_max_pool_1d -> dense(250) -> dropout -> dense(1)
@@ -122,9 +133,18 @@ POOL_SIZE=2
 		- Epoch [18]: val_f1 did not improve from: 0.63279
 		- **val:** `loss: 0.5288 - acc: 0.7704 - rec: 0.6181 - prec: 0.6628 - f1: 0.6303`
 		- **test:** `loss: 0.5145 - acc: 0.7674 - rec: 0.5582 - prec: 0.5790 - f1: 0.5582`
+3. Accs through 3 runs: 
+	- CNN 16: 
+		- test acc: 0.7000,  0.7988, 0.7256
+		- test f1: 0.5635, 0.5977, 0.5452
+	- CNN 64: 
+		- test acc: 0.7349, 0.6907, 0.7523
+		- test f1: 0.5382, 0.5602, 0.5451
+	- CNN 256: 
+		- test acc: 0.7326, 0.7698, 0.7547
+		- test f1: 0.5583, 0.5696, 0.5804
 
-
-## BiLSTM CNN model
+## BiLSTM CNN model <-- 
 
 1. Structure: 
 		- emb -> dropout -> BiLSTM(+dropout) -> dense(128) -> dense(32) -> dense(1)
@@ -133,7 +153,9 @@ POOL_SIZE=2
 		- Epoch [19]: val_f1 did not improve from: from 0.65768
 		- **val:** `loss: 0.4822 - acc: 0.7889 - rec: 0.6355 - prec: 0.6991 - f1: 0.6558`
 		- **test:** `loss: 0.4328 - acc: 0.8233 - rec: 0.6417 - prec: 0.6821 - f1: 0.6461`
-
+3. Accs through 3 runs: 
+	- test acc: 0.8233, 0.8267, 0.8140
+	- test f1: 0.6461, 0.6130, 0.6418
 
 ## BiLSTM2 CNN model
 
@@ -145,7 +167,7 @@ POOL_SIZE=2
 		- **val:** `loss: 0.5739 - acc: 0.7636 - rec: 0.6847 - prec: 0.6284 - f1: 0.6439`
 		- **test:** `loss: 0.4843 - acc: 0.7849 - rec: 0.7196 - prec: 0.5901 - f1: 0.6357`
 
-## BiLSTM2 CNN3 model
+## BiLSTM2 CNN3 model <-- 
 
 1. Structure: 
 		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dense(512) -> dropout -> dense(128) -> dropout -> dense(32) -> dense(1)
@@ -156,9 +178,11 @@ POOL_SIZE=2
 		- Epoch [20]: val_f1 did not improve from: from 0.65814
 		- **val:** `loss: 0.5116 - acc: 0.7761 - rec: 0.6835 - prec: 0.6562 - f1: 0.6606`
 		- **test:** `loss: 0.4250 - acc: 0.8070 - rec: 0.6367 - prec: 0.6436 - f1: 0.6311`
+3. Accs through 3 runs: 
+	- test acc: 0.8070, 0.8395, 0.7988
+	- test f1: 0.6311, 0.6778, 0.6239
 
-
-## BiLSTM2 CNN short model
+## BiLSTM2 CNN short model <-- 
 
 1. Structure: 
 		- emb -> dropout -> BiLSTM(+dropout) -> dropout -> BiLSTM(+dropout)-> dropout -> dense(32) -> dense(1)
@@ -181,10 +205,16 @@ POOL_SIZE=2
 		- Epoch [20]: val_f1 did not improve from: 0.65929
 		- **val:** `loss: 0.5067 - acc: 0.7772 - rec: 0.6888 - prec: 0.6570 - f1: 0.6628`
 		- **test:** `loss: 0.4575 - acc: 0.7930 - rec: 0.6545 - prec: 0.6172 - f1: 0.6226`
-5. Results **lstm_out=64, num_filters = 16, lr = 0.0001**: 
+6. Results **lstm_out=64, num_filters = 16, lr = 0.0001**: 
 		- Epoch [30]: val_f1 did not improve from: 0.65957
 		- **val:** `loss: 0.4712 - acc: 0.7931 - rec: 0.6253 - prec: 0.7219 - f1: 0.6595`
 		- **test:** `loss: 0.4281 - acc: 0.8337 - rec: 0.4976 - prec: 0.8268 - f1: 0.6032`
+7. Accs through 3 runs: **lstm_out=32, num_filters = 16, lr = 0.001**
+	- test acc:  0.8302, 
+	- test f1: 0.5948
+8. Accs through 3 runs: **lstm_out=64, num_filters = 64, lr = 0.001**
+	- test acc: 0.8163, 0.8326, 0.8326
+	- test f1: 0.6567, 0.6503, 0.6222
 
 ## BiLSTM2 CNN supershort model
 

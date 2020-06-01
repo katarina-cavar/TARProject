@@ -23,7 +23,7 @@ from data_processing import DataReader, Preprocessor, rec, prec, f1
 from dl_models import basic_model, LSTM_model, LSTM_model2, BiLSTM_model, \
 BiLSTM_moreReg_model, BiLSTM_moreReg_model2, CNN_model, BiLSTM_CNN_model, BiLSTM2_model, \
 BiLSTM2_CNN_model, BiLSTM2_CNN3_model, BiLSTM_short_model, BiLSTM2_CNN3_short_model, \
-BiLSTM2_CNN3_supershort_model
+BiLSTM2_CNN3_supershort_model, basic_no_emb_model
 
 
 def get_arguments():
@@ -33,7 +33,8 @@ def get_arguments():
 	parser.add_argument("emb_file", metavar="EMBFILE")
 	parser.add_argument("model_name", metavar="MODELNAME")
 	parser.add_argument("model_type", metavar="MODEL_TYPE", 
-		choices=['basic_model', 'LSTM_model', 'LSTM_model2', 
+		choices=['basic_model', 'basic_no_emb_model',
+		'LSTM_model', 'LSTM_model2', 
 		'BiLSTM_model', 'BiLSTM_short_model',
 		'BiLSTM_moreReg_model', 'BiLSTM_moreReg_model2',
 		'BiLSTM_CNN_model', 'CNN_model', 'BiLSTM2_model',
@@ -351,6 +352,8 @@ def main():
 		model = BiLSTM2_CNN3_short_model(args, embedding_matrix)
 	elif args.model_type == "BiLSTM2_CNN3_supershort_model":
 		model = BiLSTM2_CNN3_supershort_model(args, embedding_matrix)
+	elif args.model_type == "basic_no_emb_model":
+		model = basic_no_emb_model(args, embedding_matrix)
 	else: 
 		model = basic_model(args, embedding_matrix)
 
@@ -377,7 +380,7 @@ def main():
 		monitor=monitor, mode=monitor_mode)
 	callback_list.append(mc)
 
-	patience = 15
+	patience = 5
 
 	es = EarlyStopping(monitor=monitor, mode=monitor_mode, patience=patience, verbose=1)
 	callback_list.append(es)

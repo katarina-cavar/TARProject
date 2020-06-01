@@ -732,3 +732,661 @@ Scores on test:
 860/860 [==============================] - 1s 1ms/sample - loss: 0.4732 - acc: 0.8174 - rec: 0.5953 - prec: 0.6949 - f1: 0.6322
 [0.4732070698294529, 0.8174419, 0.5953094, 0.6948628, 0.63219887]
 ```
+
+## Preprocessing - no preprocessing
+
+- BiLSTM2_CNN3_short_model
+
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2833 - acc: 0.8873 - rec: 0.8226 - prec: 0.8347 - f1: 0.8209
+Epoch 00009: val_f1 did not improve from 0.67748
+
+10592/10592 [==============================] - 61s 6ms/sample - loss: 0.2831 - acc: 0.8873 - rec: 0.8228 - prec: 0.8344 - f1: 0.8208 - val_loss: 0.5791 - val_acc: 0.7666 - val_rec: 0.6567 - val_prec: 0.6514 - val_f1: 0.6420
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 2s 875us/sample - loss: 0.5791 - acc: 0.7666 - rec: 0.6488 - prec: 0.6402 - f1: 0.6363
+
+SCORES:
+[0.5790688983443281, 0.7666163, 0.6488238, 0.64021593, 0.63626784]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras', model_type='BiLSTM2_CNN3_short_model', num_epochs=50, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='no_preprocessing', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 4s 2ms/sample - loss: 0.4687 - acc: 0.7813 - rec: 0.7012 - prec: 0.6592 - f1: 0.6703
+[0.4686959538034802, 0.7813444, 0.70122886, 0.6592447, 0.6703403]
+
+Scores on test:
+860/860 [==============================] - 1s 2ms/sample - loss: 0.4243 - acc: 0.8070 - rec: 0.6581 - prec: 0.6365 - f1: 0.6368
+[0.4242650256600491, 0.80697674, 0.65812385, 0.6365452, 0.6367698]
+
+```
+
+
+------------------------------
+
+## RUn 2 i 3
+
+**Basic no emb**
+- 1: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1942 - acc: 0.9274 - rec: 0.8602 - prec: 0.9169 - f1: 0.8800
+Epoch 00008: val_f1 did not improve from 0.59769
+
+10592/10592 [==============================] - 11s 1ms/sample - loss: 0.1940 - acc: 0.9275 - rec: 0.8599 - prec: 0.9174 - f1: 0.8801 - val_loss: 0.8617 - val_acc: 0.7492 - val_rec: 0.5321 - val_prec: 0.6465 - val_f1: 0.5698
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 0s 54us/sample - loss: 0.8617 - acc: 0.7492 - rec: 0.5253 - prec: 0.6361 - f1: 0.5654
+
+SCORES:
+[0.8616731038986736, 0.7492447, 0.5252508, 0.6361413, 0.5654126]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras1', model_type='basic_no_emb_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 67us/sample - loss: 0.5534 - acc: 0.7625 - rec: 0.5616 - prec: 0.6653 - f1: 0.5987
+[0.5534110775166768, 0.76246226, 0.5615798, 0.66527784, 0.5987098]
+
+Scores on test:
+860/860 [==============================] - 0s 53us/sample - loss: 0.5356 - acc: 0.7709 - rec: 0.4581 - prec: 0.6179 - f1: 0.5155
+[0.5355715511843215, 0.77093023, 0.45807776, 0.61787313, 0.51550984]
+
+```
+- 2: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1735 - acc: 0.9344 - rec: 0.8757 - prec: 0.9261 - f1: 0.8937
+Epoch 00010: val_f1 did not improve from 0.58960
+
+10592/10592 [==============================] - 11s 1ms/sample - loss: 0.1735 - acc: 0.9345 - rec: 0.8761 - prec: 0.9261 - f1: 0.8938 - val_loss: 0.9308 - val_acc: 0.7262 - val_rec: 0.5870 - val_prec: 0.5927 - val_f1: 0.5752
+
+2648/2648 [==============================] - 0s 53us/sample - loss: 0.9308 - acc: 0.7262 - rec: 0.5794 - prec: 0.5829 - f1: 0.5707
+
+SCORES:
+[0.9307756674253689, 0.72620845, 0.579372, 0.58291095, 0.5707242]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='basic_no_emb_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 69us/sample - loss: 0.7994 - acc: 0.7481 - rec: 0.5623 - prec: 0.6292 - f1: 0.5829
+[0.7993530695892173, 0.7481118, 0.56233066, 0.62918156, 0.5828674]
+
+Scores on test:
+860/860 [==============================] - 0s 50us/sample - loss: 1.0503 - acc: 0.7012 - rec: 0.5090 - prec: 0.4862 - f1: 0.4838
+[1.0502550669880801, 0.7011628, 0.5090117, 0.48617852, 0.48383796]
+
+```
+
+- 3: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1587 - acc: 0.9442 - rec: 0.9026 - prec: 0.9288 - f1: 0.9103
+Epoch 00010: val_f1 did not improve from 0.58805
+
+10592/10592 [==============================] - 10s 957us/sample - loss: 0.1589 - acc: 0.9441 - rec: 0.9024 - prec: 0.9287 - f1: 0.9102 - val_loss: 1.0348 - val_acc: 0.7085 - val_rec: 0.6180 - val_prec: 0.5589 - val_f1: 0.5744
+
+2648/2648 [==============================] - 0s 52us/sample - loss: 1.0348 - acc: 0.7085 - rec: 0.6077 - prec: 0.5505 - f1: 0.5670
+
+SCORES:
+[1.034759555878596, 0.7084592, 0.6077107, 0.5505128, 0.56697017]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='basic_no_emb_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 73us/sample - loss: 0.8075 - acc: 0.7281 - rec: 0.6018 - prec: 0.5811 - f1: 0.5808
+[0.8074768480937646, 0.72809666, 0.601778, 0.5810636, 0.58082837]
+
+Scores on test:
+860/860 [==============================] - 0s 52us/sample - loss: 1.0465 - acc: 0.6965 - rec: 0.5686 - prec: 0.4836 - f1: 0.5064
+[1.046521896123886, 0.6965116, 0.5686219, 0.4835665, 0.50639355]
+
+```
+
+
+**Basic**
+- 2
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.1836 - acc: 0.9326 - rec: 0.8764 - prec: 0.9220 - f1: 0.8924
+Epoch 00009: val_f1 did not improve from 0.60871
+
+10592/10592 [==============================] - 11s 1ms/sample - loss: 0.1836 - acc: 0.9325 - rec: 0.8765 - prec: 0.9217 - f1: 0.8923 - val_loss: 0.8738 - val_acc: 0.7270 - val_rec: 0.6008 - val_prec: 0.5853 - val_f1: 0.5798
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 0s 51us/sample - loss: 0.8738 - acc: 0.7270 - rec: 0.6011 - prec: 0.5780 - f1: 0.5793
+
+SCORES:
+[0.8738254043991112, 0.72696376, 0.6010546, 0.57796043, 0.57932544]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='basic_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 76us/sample - loss: 0.5592 - acc: 0.7700 - rec: 0.5661 - prec: 0.6741 - f1: 0.6058
+[0.5591787370850312, 0.7700151, 0.56611043, 0.6740835, 0.6057811]
+
+Scores on test:
+860/860 [==============================] - 0s 51us/sample - loss: 0.5529 - acc: 0.7837 - rec: 0.4963 - prec: 0.6280 - f1: 0.5436
+[0.5528563254101332, 0.7837209, 0.4963177, 0.6280181, 0.5436187]
+
+```
+- 3
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.1877 - acc: 0.9317 - rec: 0.8724 - prec: 0.9232 - f1: 0.8889
+Epoch 00009: val_f1 did not improve from 0.61265
+
+10592/10592 [==============================] - 17s 2ms/sample - loss: 0.1878 - acc: 0.9316 - rec: 0.8721 - prec: 0.9234 - f1: 0.8888 - val_loss: 0.9060 - val_acc: 0.7542 - val_rec: 0.5012 - val_prec: 0.6708 - val_f1: 0.5628
+Epoch 00009: early stopping
+2648/2648 [==============================] - 0s 134us/sample - loss: 0.9060 - acc: 0.7542 - rec: 0.4960 - prec: 0.6674 - f1: 0.5567
+
+SCORES:
+[0.9059868478342846, 0.7541541, 0.4959851, 0.6673695, 0.5567075]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='basic_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 1s 199us/sample - loss: 0.5644 - acc: 0.7651 - rec: 0.5912 - prec: 0.6621 - f1: 0.6163
+[0.5643898493573745, 0.7651057, 0.5912168, 0.66211426, 0.61629236]
+
+Scores on test:
+860/860 [==============================] - 0s 131us/sample - loss: 0.6348 - acc: 0.7326 - rec: 0.6015 - prec: 0.5237 - f1: 0.5473
+[0.6348478479440822, 0.73255813, 0.60153574, 0.5236528, 0.54726434]
+
+```
+
+**BiLSTM model**
+- 2
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.1601 - acc: 0.9362 - rec: 0.8934 - prec: 0.9161 - f1: 0.8996
+Epoch 00009: val_f1 did not improve from 0.63165
+
+10592/10592 [==============================] - 49s 5ms/sample - loss: 0.1606 - acc: 0.9359 - rec: 0.8930 - prec: 0.9154 - f1: 0.8990 - val_loss: 0.8655 - val_acc: 0.7466 - val_rec: 0.5924 - val_prec: 0.6267 - val_f1: 0.5978
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 1s 383us/sample - loss: 0.8655 - acc: 0.7466 - rec: 0.5877 - prec: 0.6176 - f1: 0.5917
+
+SCORES:
+[0.8655441464614292, 0.7466012, 0.58773994, 0.6176451, 0.59171605]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='BiLSTM_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 1s 498us/sample - loss: 0.5331 - acc: 0.7829 - rec: 0.5872 - prec: 0.7062 - f1: 0.6310
+[0.5331085545328809, 0.782855, 0.5871571, 0.7062019, 0.63103414]
+
+Scores on test:
+860/860 [==============================] - 0s 450us/sample - loss: 0.4671 - acc: 0.8302 - rec: 0.4812 - prec: 0.8046 - f1: 0.5871
+[0.46711185761662416, 0.83023256, 0.4811751, 0.8045856, 0.5870791]
+
+```
+
+- 3: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.1676 - acc: 0.9328 - rec: 0.8869 - prec: 0.9084 - f1: 0.8931
+Epoch 00009: val_f1 did not improve from 0.63370
+
+10592/10592 [==============================] - 58s 5ms/sample - loss: 0.1680 - acc: 0.9325 - rec: 0.8867 - prec: 0.9083 - f1: 0.8929 - val_loss: 0.8812 - val_acc: 0.7557 - val_rec: 0.5600 - val_prec: 0.6545 - val_f1: 0.5911
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 2s 882us/sample - loss: 0.8812 - acc: 0.7557 - rec: 0.5628 - prec: 0.6595 - f1: 0.5932
+
+SCORES:
+[0.8812109296775656, 0.75566465, 0.56279284, 0.65948635, 0.59323984]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='BiLSTM_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 1s 527us/sample - loss: 0.5397 - acc: 0.7840 - rec: 0.5851 - prec: 0.7127 - f1: 0.6311
+[0.5396915298304169, 0.78398794, 0.5850823, 0.71268255, 0.63108295]
+
+Scores on test:
+860/860 [==============================] - 0s 452us/sample - loss: 0.4389 - acc: 0.8233 - rec: 0.5509 - prec: 0.7229 - f1: 0.6148
+[0.4388537290484406, 0.82325584, 0.55087864, 0.7229117, 0.6147892]
+
+```
+
+**CNN 16**
+- 1: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1983 - acc: 0.9264 - rec: 0.8671 - prec: 0.9112 - f1: 0.8816
+Epoch 00008: val_f1 did not improve from 0.64149
+
+10592/10592 [==============================] - 10s 974us/sample - loss: 0.1981 - acc: 0.9265 - rec: 0.8672 - prec: 0.9117 - f1: 0.8819 - val_loss: 0.9086 - val_acc: 0.7523 - val_rec: 0.4760 - val_prec: 0.6729 - val_f1: 0.5396
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 0s 52us/sample - loss: 0.9086 - acc: 0.7523 - rec: 0.4706 - prec: 0.6728 - f1: 0.5411
+
+SCORES:
+[0.9085766844158807, 0.7522659, 0.47056377, 0.6727813, 0.5410964]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras1_cnn16', model_type='CNN_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 68us/sample - loss: 0.5379 - acc: 0.7617 - rec: 0.6646 - prec: 0.6342 - f1: 0.6388
+[0.5378660439904723, 0.76170695, 0.6645518, 0.63420916, 0.638796]
+
+Scores on test:
+860/860 [==============================] - 0s 52us/sample - loss: 0.6437 - acc: 0.7000 - rec: 0.7175 - prec: 0.4777 - f1: 0.5635
+[0.6437306745107784, 0.7, 0.7174567, 0.47766522, 0.56350887]
+
+```
+
+- 2: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2214 - acc: 0.9138 - rec: 0.8353 - prec: 0.8999 - f1: 0.8582
+Epoch 00007: val_f1 did not improve from 0.63901
+
+10592/10592 [==============================] - 17s 2ms/sample - loss: 0.2215 - acc: 0.9139 - rec: 0.8355 - prec: 0.8999 - f1: 0.8583 - val_loss: 0.7610 - val_acc: 0.7504 - val_rec: 0.5760 - val_prec: 0.6392 - val_f1: 0.5941
+Epoch 00007: early stopping
+
+2648/2648 [==============================] - 0s 115us/sample - loss: 0.7610 - acc: 0.7504 - rec: 0.5709 - prec: 0.6283 - f1: 0.5892
+
+SCORES:
+[0.7609558352170754, 0.75037766, 0.57090867, 0.6282555, 0.5892085]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2_cnn16', model_type='CNN_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 168us/sample - loss: 0.5215 - acc: 0.7745 - rec: 0.6377 - prec: 0.6672 - f1: 0.6412
+[0.5214502970797777, 0.7745468, 0.6376867, 0.66721237, 0.64120764]
+
+Scores on test:
+860/860 [==============================] - 0s 135us/sample - loss: 0.4715 - acc: 0.7988 - rec: 0.5724 - prec: 0.6538 - f1: 0.5977
+[0.4715170063251673, 0.7988372, 0.5724, 0.6537677, 0.5977012]
+
+```
+
+- 3: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1813 - acc: 0.9334 - rec: 0.8775 - prec: 0.9220 - f1: 0.8928
+Epoch 00009: val_f1 did not improve from 0.62241
+
+10592/10592 [==============================] - 10s 964us/sample - loss: 0.1817 - acc: 0.9331 - rec: 0.8764 - prec: 0.9224 - f1: 0.8924 - val_loss: 0.9143 - val_acc: 0.7534 - val_rec: 0.5176 - val_prec: 0.6597 - val_f1: 0.5677
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 0s 53us/sample - loss: 0.9143 - acc: 0.7534 - rec: 0.5169 - prec: 0.6519 - f1: 0.5672
+
+SCORES:
+[0.9142572598875109, 0.7533988, 0.51692414, 0.65191674, 0.567231]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3_cnn16', model_type='CNN_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 74us/sample - loss: 0.5677 - acc: 0.7685 - rec: 0.6172 - prec: 0.6605 - f1: 0.6276
+[0.5676792866333734, 0.76850456, 0.61716914, 0.6604952, 0.6276202]
+
+Scores on test:
+860/860 [==============================] - 0s 51us/sample - loss: 0.6567 - acc: 0.7256 - rec: 0.6199 - prec: 0.5042 - f1: 0.5452
+[0.6567106496456058, 0.7255814, 0.6198835, 0.5042244, 0.5451991]
+
+```
+
+**CNN 64**
+- 1: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1822 - acc: 0.9331 - rec: 0.8764 - prec: 0.9220 - f1: 0.8922
+Epoch 00009: val_f1 did not improve from 0.62176
+
+10592/10592 [==============================] - 10s 979us/sample - loss: 0.1822 - acc: 0.9333 - rec: 0.8764 - prec: 0.9225 - f1: 0.8924 - val_loss: 0.9067 - val_acc: 0.7564 - val_rec: 0.5400 - val_prec: 0.6646 - val_f1: 0.5806
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 0s 52us/sample - loss: 0.9067 - acc: 0.7564 - rec: 0.5325 - prec: 0.6528 - f1: 0.5774
+
+SCORES:
+[0.9066743117804974, 0.75641996, 0.5324592, 0.65282595, 0.57741576]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras1_cnn64', model_type='CNN_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 66us/sample - loss: 0.5645 - acc: 0.7685 - rec: 0.6140 - prec: 0.6615 - f1: 0.6273
+[0.5644911036930775, 0.76850456, 0.6140077, 0.6614915, 0.62725025]
+
+Scores on test:
+
+860/860 [==============================] - 0s 52us/sample - loss: 0.6307 - acc: 0.7349 - rec: 0.5835 - prec: 0.5232 - f1: 0.5382
+[0.6307148420533468, 0.7348837, 0.5834647, 0.5231662, 0.53820294]
+
+```
+
+- 2: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1890 - acc: 0.9272 - rec: 0.8601 - prec: 0.9200 - f1: 0.8818
+Epoch 00009: val_f1 did not improve from 0.61858
+
+10592/10592 [==============================] - 10s 957us/sample - loss: 0.1891 - acc: 0.9270 - rec: 0.8593 - prec: 0.9203 - f1: 0.8815 - val_loss: 0.8584 - val_acc: 0.7474 - val_rec: 0.5860 - val_prec: 0.6344 - val_f1: 0.5910
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 0s 52us/sample - loss: 0.8584 - acc: 0.7474 - rec: 0.5838 - prec: 0.6222 - f1: 0.5918
+
+SCORES:
+[0.8583884968498322, 0.7473565, 0.5837786, 0.622225, 0.5918244]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2_cnn64', model_type='CNN_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 68us/sample - loss: 0.6039 - acc: 0.7364 - rec: 0.6712 - prec: 0.5903 - f1: 0.6167
+[0.6038672938447704, 0.73640484, 0.67119634, 0.59025466, 0.6166906]
+
+Scores on test:
+860/860 [==============================] - 0s 50us/sample - loss: 0.7448 - acc: 0.6907 - rec: 0.7307 - prec: 0.4743 - f1: 0.5602
+[0.7448452856651572, 0.69069767, 0.7307442, 0.4742784, 0.5601777]
+
+```
+
+- 3: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.2004 - acc: 0.9236 - rec: 0.8537 - prec: 0.9128 - f1: 0.8751
+Epoch 00008: val_f1 did not improve from 0.63514
+
+10592/10592 [==============================] - 10s 988us/sample - loss: 0.2006 - acc: 0.9235 - rec: 0.8534 - prec: 0.9126 - f1: 0.8748 - val_loss: 0.8187 - val_acc: 0.7515 - val_rec: 0.5377 - val_prec: 0.6475 - val_f1: 0.5780
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 0s 67us/sample - loss: 0.8187 - acc: 0.7515 - rec: 0.5304 - prec: 0.6439 - f1: 0.5713
+
+SCORES:
+[0.8186879655025516, 0.75151056, 0.53039706, 0.6438549, 0.5713293]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3_cnn64', model_type='CNN_model', num_epochs=10, num_filters=64, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 68us/sample - loss: 0.5240 - acc: 0.7723 - rec: 0.6070 - prec: 0.6704 - f1: 0.6276
+[0.5239867657152908, 0.772281, 0.60704, 0.670398, 0.6276357]
+
+Scores on test:
+860/860 [==============================] - 0s 53us/sample - loss: 0.5333 - acc: 0.7523 - rec: 0.5597 - prec: 0.5601 - f1: 0.5451
+[0.5333057104155075, 0.7523256, 0.5597377, 0.56010914, 0.5451295]
+
+```
+
+**CNN 256**
+- 1: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1840 - acc: 0.9306 - rec: 0.8664 - prec: 0.9212 - f1: 0.8854
+Epoch 00009: val_f1 did not improve from 0.62650
+
+10592/10592 [==============================] - 11s 1000us/sample - loss: 0.1835 - acc: 0.9308 - rec: 0.8667 - prec: 0.9216 - f1: 0.8859 - val_loss: 0.8831 - val_acc: 0.7232 - val_rec: 0.6252 - val_prec: 0.5702 - val_f1: 0.5828
+Epoch 00009: early stopping
+2648/2648 [==============================] - 0s 55us/sample - loss: 0.8831 - acc: 0.7232 - rec: 0.6185 - prec: 0.5723 - f1: 0.5838
+
+SCORES:
+[0.8831492214044415, 0.7231873, 0.61853915, 0.5723056, 0.5838038]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras1_cnn256', model_type='CNN_model', num_epochs=10, num_filters=256, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 70us/sample - loss: 0.5992 - acc: 0.7466 - rec: 0.6594 - prec: 0.6074 - f1: 0.6230
+[0.5992351407550973, 0.7466012, 0.65940285, 0.6074342, 0.62296593]
+
+Scores on test:
+860/860 [==============================] - 0s 52us/sample - loss: 0.6468 - acc: 0.7326 - rec: 0.6296 - prec: 0.5210 - f1: 0.5583
+[0.6467662929102432, 0.73255813, 0.6296144, 0.52104634, 0.5582805]
+
+```
+
+- 2: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.2032 - acc: 0.9214 - rec: 0.8564 - prec: 0.9026 - f1: 0.8705
+Epoch 00008: val_f1 did not improve from 0.62818
+
+10592/10592 [==============================] - 11s 1ms/sample - loss: 0.2036 - acc: 0.9214 - rec: 0.8559 - prec: 0.9029 - f1: 0.8704 - val_loss: 0.8501 - val_acc: 0.7606 - val_rec: 0.5186 - val_prec: 0.6797 - val_f1: 0.5770
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 0s 56us/sample - loss: 0.8501 - acc: 0.7606 - rec: 0.5185 - prec: 0.6685 - f1: 0.5732
+
+SCORES:
+[0.8500767324986415, 0.76057404, 0.51846004, 0.668522, 0.57315016]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2_cnn256', model_type='CNN_model', num_epochs=10, num_filters=256, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 66us/sample - loss: 0.5316 - acc: 0.7708 - rec: 0.6186 - prec: 0.6652 - f1: 0.6313
+[0.5315574993719867, 0.7707704, 0.6185707, 0.665177, 0.6312708]
+
+Scores on test:
+860/860 [==============================] - 0s 52us/sample - loss: 0.5306 - acc: 0.7698 - rec: 0.5687 - prec: 0.5955 - f1: 0.5696
+[0.5306140230145565, 0.76976746, 0.5686557, 0.5955217, 0.569589]
+
+```
+
+- 3: 
+```
+10528/10592 [============================>.] - ETA: 0s - loss: 0.1774 - acc: 0.9353 - rec: 0.8826 - prec: 0.9202 - f1: 0.8956
+Epoch 00009: val_f1 did not improve from 0.62826
+
+10592/10592 [==============================] - 11s 995us/sample - loss: 0.1779 - acc: 0.9351 - rec: 0.8826 - prec: 0.9195 - f1: 0.8954 - val_loss: 0.8904 - val_acc: 0.7202 - val_rec: 0.6260 - val_prec: 0.5655 - val_f1: 0.5834
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 0s 60us/sample - loss: 0.8904 - acc: 0.7202 - rec: 0.6231 - prec: 0.5679 - f1: 0.5837
+
+SCORES:
+[0.8903709900343166, 0.72016615, 0.623067, 0.5679489, 0.58368164]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3_cnn256', model_type='CNN_model', num_epochs=10, num_filters=256, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 0s 76us/sample - loss: 0.5978 - acc: 0.7432 - rec: 0.6823 - prec: 0.5998 - f1: 0.6283
+[0.5978339390992398, 0.7432024, 0.68234605, 0.5997569, 0.6283056]
+
+Scores on test:
+860/860 [==============================] - 0s 51us/sample - loss: 0.5946 - acc: 0.7547 - rec: 0.6321 - prec: 0.5609 - f1: 0.5804
+[0.5945663104916727, 0.7546512, 0.63214236, 0.56092775, 0.5803653]
+```
+
+
+**BiLSTM CNN model**
+
+- 2: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2189 - acc: 0.9122 - rec: 0.8584 - prec: 0.8741 - f1: 0.8591
+Epoch 00008: val_f1 did not improve from 0.65506
+
+10592/10592 [==============================] - 70s 7ms/sample - loss: 0.2191 - acc: 0.9122 - rec: 0.8583 - prec: 0.8742 - f1: 0.8591 - val_loss: 0.6360 - val_acc: 0.7602 - val_rec: 0.6290 - val_prec: 0.6488 - val_f1: 0.6276
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 3s 977us/sample - loss: 0.6360 - acc: 0.7602 - rec: 0.6269 - prec: 0.6378 - f1: 0.6224
+
+SCORES:
+[0.6359823987203063, 0.7601964, 0.62690043, 0.63776404, 0.6224118]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='BiLSTM_CNN_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 3s 1ms/sample - loss: 0.4740 - acc: 0.7881 - rec: 0.6415 - prec: 0.6943 - f1: 0.6550
+[0.47400585559739805, 0.78814197, 0.6414882, 0.69428205, 0.65502936]
+
+Scores on test:
+860/860 [==============================] - 1s 1ms/sample - loss: 0.4200 - acc: 0.8267 - rec: 0.5502 - prec: 0.7339 - f1: 0.6130
+[0.41996017541996267, 0.8267442, 0.5501713, 0.73386246, 0.613036]
+
+```
+
+- 3: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2168 - acc: 0.9117 - rec: 0.8661 - prec: 0.8703 - f1: 0.8609
+Epoch 00008: val_f1 did not improve from 0.66232
+
+10592/10592 [==============================] - 70s 7ms/sample - loss: 0.2170 - acc: 0.9115 - rec: 0.8662 - prec: 0.8698 - f1: 0.8607 - val_loss: 0.6604 - val_acc: 0.7583 - val_rec: 0.6131 - val_prec: 0.6457 - val_f1: 0.6192
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 3s 951us/sample - loss: 0.6604 - acc: 0.7583 - rec: 0.6088 - prec: 0.6461 - f1: 0.6140
+
+SCORES:
+[0.6603959763698347, 0.7583082, 0.6087597, 0.6460767, 0.6140414]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='BiLSTM_CNN_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 3s 1ms/sample - loss: 0.4738 - acc: 0.7791 - rec: 0.6893 - prec: 0.6596 - f1: 0.6647
+[0.47378812896881217, 0.77907854, 0.68927574, 0.6596058, 0.6646657]
+
+Scores on test:
+860/860 [==============================] - 1s 944us/sample - loss: 0.4440 - acc: 0.8140 - rec: 0.6451 - prec: 0.6656 - f1: 0.6418
+[0.4439623890921127, 0.81395346, 0.64509857, 0.66562194, 0.6418397]
+
+```
+
+**BiLSTM2 CNN3**
+- 2: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2081 - acc: 0.9177 - rec: 0.8706 - prec: 0.8804 - f1: 0.8682
+Epoch 00008: val_f1 did not improve from 0.67534
+
+10592/10592 [==============================] - 117s 11ms/sample - loss: 0.2079 - acc: 0.9179 - rec: 0.8710 - prec: 0.8806 - f1: 0.8685 - val_loss: 0.6538 - val_acc: 0.7708 - val_rec: 0.6524 - val_prec: 0.6511 - val_f1: 0.6407
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 5s 2ms/sample - loss: 0.6538 - acc: 0.7708 - rec: 0.6578 - prec: 0.6525 - f1: 0.6471
+
+SCORES:
+[0.6538196526625365, 0.7707704, 0.65780216, 0.652484, 0.6471314]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='BiLSTM2_CNN3_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 6s 2ms/sample - loss: 0.4683 - acc: 0.7855 - rec: 0.6924 - prec: 0.6698 - f1: 0.6711
+[0.46833498735442264, 0.7854985, 0.6923805, 0.6697642, 0.6711001]
+
+Scores on test:
+860/860 [==============================] - 2s 2ms/sample - loss: 0.4157 - acc: 0.8395 - rec: 0.6402 - prec: 0.7460 - f1: 0.6778
+[0.41568076769972956, 0.8395349, 0.6401795, 0.7460131, 0.6777801]
+
+```
+
+- 3: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2065 - acc: 0.9172 - rec: 0.8674 - prec: 0.8833 - f1: 0.8689
+Epoch 00008: val_f1 did not improve from 0.65006
+
+10592/10592 [==============================] - 117s 11ms/sample - loss: 0.2061 - acc: 0.9175 - rec: 0.8678 - prec: 0.8836 - f1: 0.8693 - val_loss: 0.6638 - val_acc: 0.7719 - val_rec: 0.6197 - val_prec: 0.6671 - val_f1: 0.6311
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 4s 1ms/sample - loss: 0.6638 - acc: 0.7719 - rec: 0.6182 - prec: 0.6653 - f1: 0.6316
+
+SCORES:
+[0.6638426927011178, 0.77190334, 0.61817306, 0.66533697, 0.6315716]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='BiLSTM2_CNN3_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 6s 2ms/sample - loss: 0.4726 - acc: 0.7764 - rec: 0.6623 - prec: 0.6603 - f1: 0.6519
+[0.472612017951343, 0.776435, 0.6622757, 0.66026396, 0.65193844]
+
+Scores on test:
+860/860 [==============================] - 2s 2ms/sample - loss: 0.4370 - acc: 0.7988 - rec: 0.6339 - prec: 0.6306 - f1: 0.6239
+[0.4370402976523998, 0.7988372, 0.6339443, 0.6305977, 0.6238962]
+
+```
+
+
+
+**BiLSTM2 CNN3 short**
+- 2: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2736 - acc: 0.8906 - rec: 0.8221 - prec: 0.8463 - f1: 0.8257
+Epoch 00009: val_f1 did not improve from 0.65718
+
+10592/10592 [==============================] - 74s 7ms/sample - loss: 0.2736 - acc: 0.8908 - rec: 0.8223 - prec: 0.8465 - f1: 0.8260 - val_loss: 0.6278 - val_acc: 0.7719 - val_rec: 0.6446 - val_prec: 0.6702 - val_f1: 0.6426
+Epoch 00009: early stopping
+
+2648/2648 [==============================] - 3s 967us/sample - loss: 0.6278 - acc: 0.7719 - rec: 0.6326 - prec: 0.6555 - f1: 0.6345
+
+SCORES:
+[0.6277928465352678, 0.77190334, 0.6325667, 0.65550715, 0.6345067]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras2', model_type='BiLSTM2_CNN3_short_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 4s 2ms/sample - loss: 0.4694 - acc: 0.7847 - rec: 0.6726 - prec: 0.6832 - f1: 0.6660
+[0.46942756980027317, 0.7847432, 0.6726009, 0.6832064, 0.6660438]
+
+Scores on test:
+860/860 [==============================] - 1s 2ms/sample - loss: 0.4173 - acc: 0.8326 - rec: 0.5961 - prec: 0.7419 - f1: 0.6503
+[0.41733100892499436, 0.83255816, 0.5961305, 0.7419206, 0.6502978]
+
+```
+
+- 3: 
+```
+10560/10592 [============================>.] - ETA: 0s - loss: 0.2946 - acc: 0.8737 - rec: 0.8052 - prec: 0.8145 - f1: 0.8005
+Epoch 00008: val_f1 did not improve from 0.66579
+
+10592/10592 [==============================] - 114s 11ms/sample - loss: 0.2951 - acc: 0.8733 - rec: 0.8053 - prec: 0.8139 - f1: 0.8002 - val_loss: 0.5603 - val_acc: 0.7779 - val_rec: 0.6201 - val_prec: 0.6798 - val_f1: 0.6390
+Epoch 00008: early stopping
+
+2648/2648 [==============================] - 5s 2ms/sample - loss: 0.5603 - acc: 0.7779 - rec: 0.6210 - prec: 0.6764 - f1: 0.6361
+
+SCORES:
+[0.5602872665194947, 0.77794564, 0.6209658, 0.6763951, 0.63612187]
+
+Arguments:
+----------
+Namespace(LR=0.001, data_file='../../Dataset-OLID/OLIDv1.0/data_subtask_a.csv', dropout=0.5, emb_dim=300, emb_file='../../../0_embeddings/glove.6B/glove.6B.300d.txt', kernel_size=3, lstm_out=32, max_len=64, model_name='modelKeras3', model_type='BiLSTM2_CNN3_short_model', num_epochs=10, num_filters=16, oov_tok='<OOV>', pad_type='post', pool_size=2, preproc='remove_stopwords_and_punctuation_textblob', strides=1, test_file='../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv', train_portion=0.8, trunc_type='post', verbose=1, vocab_size=7500)
+
+Scores on val:
+2648/2648 [==============================] - 9s 3ms/sample - loss: 0.4690 - acc: 0.7863 - rec: 0.6850 - prec: 0.6758 - f1: 0.6707
+[0.4690481904230089, 0.78625375, 0.6850168, 0.675808, 0.67068595]
+
+Scores on test:
+860/860 [==============================] - 2s 2ms/sample - loss: 0.4222 - acc: 0.8326 - rec: 0.5520 - prec: 0.7547 - f1: 0.6222
+[0.4222217744173006, 0.83255816, 0.55204105, 0.7546512, 0.6221856]
+
+```
+
+
+## Test preprocessing on BiLSTM2_CNN3_short
+
+1. no_preprocessing
+```
+```
+2. remove_stopwords and punctuation
+```
+```
+3. remove stopwords and punctuation textblob
+```
+Scores on test:
+860/860 [==============================] - 1s 1ms/sample - loss: 0.4251 - acc: 0.8349 - rec: 0.5495 - prec: 0.7594 - f1: 0.6253
+[0.42508711149526196, 0.83488375, 0.5495007, 0.75937015, 0.6252544]
+
+Scores on no proc test:
+860/860 [==============================] - 1s 946us/sample - loss: 0.4141 - acc: 0.8349 - rec: 0.5731 - prec: 0.7403 - f1: 0.6347
+[0.4141227045031481, 0.83488375, 0.57311594, 0.7403401, 0.63472944]
+
+```

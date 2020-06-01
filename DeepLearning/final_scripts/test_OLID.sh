@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export CUDA_VISIBLE_DEVICES=-1 #CPU
+#export CUDA_VISIBLE_DEVICES=-1 #CPU
 # OLID:
 TEST_FILE="../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv"
 
@@ -8,9 +8,9 @@ TEST_FILE="../../Dataset-OLID/OLIDv1.0/test_data_subtask_a.csv"
 #TEST_FILE="../../Dataset-MTSA/tweets_50-50.csv"	
 
 EMB_FILE="../../../0_embeddings/glove.6B/glove.6B.300d.txt" #options: {50,100,200,300}d
-MODEL_NAME="saved_models/modelKeras_type=BiLSTM2_CNN3_supershort_model_proc=remove_stopwords_and_punctuation_textblob_epochs=50_emb_dim=300_vocab=7500"
+MODEL_NAME="models/modelKeras_type=BiLSTM2_CNN3_short_model_proc=no_preprocessing_epochs=50_emb_dim=300_vocab=7500"
 TOKENIZER="tokenizers/tokenizer_maxlen=64.pickle"
-PREPROC="remove_stopwords_and_punctuation_textblob"
+PREPROC="no_preprocessing"
 
 VOCAB_SIZE=7500
 EMBEDDING_DIM=300
